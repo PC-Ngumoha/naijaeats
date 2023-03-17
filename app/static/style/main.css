@@ -1,0 +1,107 @@
+/*
+COLORS:
+Theme-green: #29ba50
+Button text grey: #bcd6c3
+
+*/
+
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    padding: 10px;
+}
+
+
+.spacer {
+    height: 5.6rem
+}
+
+@media screen  and (max-width: 800px){
+    .spacer {
+        height: 8rem;
+    }
+}
+
+.brand {
+    height: fit-content;
+}
+
+.brand-name {
+    font-size: 2.5rem;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+.brand-name > span {
+    color: #29ba50;
+    font-weight: 700;
+}
+
+.bars {
+    font-size: 2rem;
+    vertical-align: middle;
+}
+
+.filter {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.filter > select {
+    display: inline-block;
+    width: 40%;
+}
+
+@media screen and (max-width: 800px) {
+    .filter {
+        width: 20%;
+        flex-direction: column;
+    }
+
+    .filter > select {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+}
+
+
+.cart {
+    width: fit-content;
+}
+
+.btn-cart {
+    width: 10rem;
+    border: 2px solid #29ba50;
+    border-radius: 20px;
+}
+
+.btn-cart:hover {
+    background-color: #29ba50;
+    color: #fff;
+    transition: all 2s;
+}
+
+.btn-cart > i {
+    font-size: 1.2rem;
+}
+
+.btn-cart > span {
+    font-size: 1.5rem;
+}
+
+
+.offcanvas {
+    width: 20% !important;
+}
+
+@media screen and (max-width: 800px) {
+    .offcanvas {
+        width: 30% !important;
+    }
+}
