@@ -1,5 +1,83 @@
 {% extends "base.html" %}
 {% block title %}About{% endblock %}
 {% block content %}
-<h1>About Page</h1>
+{% include 'simple_nav.html' %}
+
+<h1 class="about-header">Meet The Creators</h1>
+
+<article class="row about">
+    <section class="col-md-6">
+        <div class="head">
+            <img src="{{ url_for('static', filename='images/emeka.png') }}" alt="Chukwuemeka Ngumoha">
+            <span>Chukwuemeka Ngumoha</span>
+        </div>
+
+        <div class="body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna
+            aliqua. Tristique senectus et netus et malesuada fames. Duis at consectetur lorem donec massa sapien
+            faucibus et.
+            Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Condimentum mattis pellentesque id nibh
+            tortor id
+            aliquet lectus proin. Neque viverra justo nec ultrices dui. Aliquam ut porttitor leo a diam. Sed id semper
+            risus in
+            hendrerit. Volutpat consequat mauris nunc congue nisi vitae. Ullamcorper eget nulla facilisi etiam
+            dignissim. Morbi enim
+            nunc faucibus a pellentesque sit amet. Turpis cursus in hac habitasse. Aenean et tortor at risus viverra
+            adipiscing at
+            in. Tempus urna et pharetra pharetra massa massa.
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/PC-Ngumoha" target="_blank">
+                <i class="fa-brands fa-github social"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/in/chukwuemeka-ngumoha-95a633194/" target="_blank">
+                <i class="fa-brands fa-linkedin social"></i>
+            </a>
+
+            <a href="https://twitter.com/PNgumoha" target="_blank">
+                <i class="fa-brands fa-twitter social"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="col-md-6">
+        <div class="head">
+            <img src="{{ url_for('static', filename='images/wasiu.jpg') }}" alt="Wasiu Ogunkoya">
+            <span>Wasiu Ogunkoya</span>
+        </div>
+        <div class="body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna
+            aliqua. Tristique senectus et netus et malesuada fames. Duis at consectetur lorem donec massa sapien
+            faucibus et.
+            Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Condimentum mattis pellentesque id nibh
+            tortor id
+            aliquet lectus proin. Neque viverra justo nec ultrices dui. Aliquam ut porttitor leo a diam. Sed id semper
+            risus in
+            hendrerit. Volutpat consequat mauris nunc congue nisi vitae. Ullamcorper eget nulla facilisi etiam
+            dignissim. Morbi enim
+            nunc faucibus a pellentesque sit amet. Turpis cursus in hac habitasse. Aenean et tortor at risus viverra
+            adipiscing at
+            in. Tempus urna et pharetra pharetra massa massa.
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/Ogunkoya" target="_blank">
+                <i class="fa-brands fa-github social"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/in/ogunkoya-wasiu/" target="_blank">
+                <i class="fa-brands fa-linkedin social"></i>
+            </a>
+
+            <a href="https://twitter.com/ogunkoyawasiu7" target="_blank">
+                <i class="fa-brands fa-twitter social"></i>
+            </a>
+        </div>
+    </section>
+</article>
+
 {% endblock %}

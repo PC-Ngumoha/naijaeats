@@ -2,6 +2,7 @@
 COLORS:
 Theme-green: #29ba50
 Button text grey: #bcd6c3
+background grey: #f5f7f5
 
 */
 
@@ -13,6 +14,12 @@ html {
 body {
     font-size: 1.6rem;
     padding: 10px;
+}
+
+
+a {
+    color: black;
+    text-decoration: none;
 }
 
 
@@ -31,9 +38,10 @@ body {
 }
 
 .brand-name {
-    font-size: 2.5rem;
     vertical-align: middle;
+    font-size: 2.5rem;
     font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .brand-name > span {
@@ -84,7 +92,7 @@ body {
 .btn-cart:hover {
     background-color: #29ba50;
     color: #fff;
-    transition: all 2s;
+    transition: all 2s ease;
 }
 
 .btn-cart > i {
@@ -105,3 +113,68 @@ body {
         width: 30% !important;
     }
 }
+
+/* ABOUT PAGE STYLES */
+
+.about-header {
+    font-size: 4rem;
+    font-family: 'Sono', sans-serif;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.about {
+    max-width: 100%;
+    margin: 5% auto;
+}
+
+.about > section {
+    margin: 5% 0;
+    padding: 10px;
+}
+
+.about > section > .head {
+    text-align: center;
+    padding: 10px;
+    background-color: #f5f7f5;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.about > section > .head > img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 3% auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.about > section > .head > span {
+    font-size: 2.5rem;
+    font-family: 'Sono', sans-serif;
+}
+
+.about > section > .body {
+    margin: 5% 0;
+    padding: 10px;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #f5f7f5;
+}
+
+.about > section > .links {
+    margin: 5% 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #f5f7f5;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.about > section > .links > a > .social {
+    font-size: 3.5rem;
+}
+
