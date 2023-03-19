@@ -2,5 +2,37 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% include 'home_nav.html' %}
-<p>{{data}}</p>
+<!-- <p>{{data}}</p> -->
+
+{% for category in categories %}
+<section>
+    <div class="category-header">
+        <h1>{{ category['name'] }}</h1>
+
+        <div class="carousel-btns">
+            <i id="left" class="fa-solid fa-arrow-left"></i>
+            <i id="right" class="fa-solid fa-arrow-right"></i>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="carousel">
+            {% for food in category['members'] %}
+            <div class="item">
+                <div class="food-card">
+                    <img src="{{ food['image_url'] }}" alt="...">
+                    <div class="head">
+                        <span>{{ food['title'] }}</span>
+                        <span>NGN. {{ food['price'] }}</span>
+                    </div>
+                    <a href="#" class="btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endfor %}
+
+
 {% endblock %}

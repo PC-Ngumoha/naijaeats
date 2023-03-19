@@ -6,6 +6,11 @@ background grey: #f5f7f5
 
 */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html {
     font-size: 10px;
@@ -113,6 +118,12 @@ a {
         width: 30% !important;
     }
 }
+
+
+/* .card {
+    width: 18rem;
+} */
+
 
 /* ABOUT PAGE STYLES */
 
