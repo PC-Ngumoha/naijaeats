@@ -7,11 +7,12 @@ def create_app(config_class=Config):
     """Test setup for flask"""
     app = Flask(__name__)
 
-    # Initialize db here
+    # Initialize packages here
 
     # create app blueprints here
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
+
 
     @app.route('/test/')
     def test_app():
