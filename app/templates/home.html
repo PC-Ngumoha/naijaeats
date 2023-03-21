@@ -10,13 +10,13 @@
         <h1>{{ category['name'] }}</h1>
 
         <div class="carousel-btns">
-            <i id="left" class="fa-solid fa-arrow-left"></i>
-            <i id="right" class="fa-solid fa-arrow-right"></i>
+            <i id="left" class="fa-solid fa-arrow-left arrow-{{ category['id'] }}"></i>
+            <i id="right" class="fa-solid fa-arrow-right arrow-{{ category['id'] }}"></i>
         </div>
     </div>
 
     <div class="wrapper">
-        <div class="carousel">
+        <div class="carousel" data-category-id="{{ category['id'] }}">
             {% for food in category['members'] %}
             <div class="item">
                 <div class="food-card">

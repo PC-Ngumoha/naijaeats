@@ -1,49 +1,51 @@
-const carousel = document.querySelector('.carousel'),
-items = carousel.querySelectorAll('.item'),
-arrows = document.querySelectorAll('.carousel-btns i');
+const carousels = document.querySelectorAll('.carousel');
+// independent functionality for each carousel
 
-const firstItem = items[0];
-const lastItem = items[items.length - 1];
+//Enables mouse scrolling to work on each carousel.
+carousels.forEach(carousel => {
+    let isDrag, prevPageX, prevScrollLeft;
+    
+    const dragStart = (e) => {
+        isDrag = true;
+        prevPageX = e.pageX;
+        prevScrollLeft = carousel.scrollLeft;
+    }
 
-//Enabling scroll based movements.
-let isDrag = false, prevPageX, prevScrollLeft,
-itemWidth = firstItem.clientWidth + 20,
-startPoint = 0,
-endPoint = lastItem.getBoundingClientRect().left;
+    const dragStop = () => {
+        isDrag = false;
+    }
 
-arrows.forEach(arrow => {
-    arrow.addEventListener('click', (e) => {
-        carousel.scrollLeft += arrow.id == 'left'? -itemWidth : itemWidth;
-    });
+    const dragging = (e) => {
+        if (!isDrag) return;
+        e.preventDefault();
+        let posDiff = e.pageX - prevPageX;
+        carousel.scrollLeft = prevScrollLeft - posDiff;
+    }
+
+    carousel.addEventListener('mousemove', dragging);
+    carousel.addEventListener('mousedown', dragStart);
+    carousel.addEventListener('mouseup', dragStop);
 });
 
 
-const dragStart = (e) => {
-    isDrag = true;
-    prevPageX = e.pageX;
-    prevScrollLeft = carousel.scrollLeft;
-}
+// Enable arrow buttons to work on each carousel.
+carousels.forEach(carousel => {
+    const categoryId = carousel.getAttribute('data-category-id');
+    const items = carousel.querySelectorAll('.item');
+    const arrows = document.querySelectorAll(`.arrow-${categoryId}`);
+    const itemWidth = items[0].clientWidth + 20;
+    const startPoint = 0;
+    const endPoint = items[items.length - 1].getBoundingClientRect().left;
 
-const dragStop = () => {
-    isDrag = false;
-}
+    arrows.forEach(arrow => {
+        arrow.addEventListener('click', () => {
+            carousel.scrollLeft += arrow.id == 'left'? -itemWidth : itemWidth;
+        });
+    });
 
-const dragging = (e) => {
-    if (!isDrag) return;
-    e.preventDefault();
-    let posDiff = e.pageX - prevPageX;
-    carousel.scrollLeft = prevScrollLeft - posDiff;
-}
-
-
-carousel.addEventListener('mousemove', dragging);
-carousel.addEventListener('mousedown', dragStart);
-carousel.addEventListener('mouseup', dragStop);
-
-
-// Determines when and which buttons to disable depending on whether the end of carousel
-// has been reached.
-setInterval(() => {
-    arrows[0].classList.toggle('disabled', carousel.scrollLeft  == startPoint);
-    arrows[1].classList.toggle('disabled', carousel.scrollLeft  + carousel.clientWidth >= endPoint);
-}, 200);
+    //Monitor the carousel position and disable arrow buttons accordingly
+    setInterval(() => {
+        arrows[0].classList.toggle('disabled', carousel.scrollLeft  == startPoint);
+        arrows[1].classList.toggle('disabled', carousel.scrollLeft  + carousel.clientWidth >= endPoint);
+    }, 50);
+});

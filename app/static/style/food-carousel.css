@@ -55,6 +55,7 @@
     overflow: hidden;
     cursor: pointer;
     scroll-behavior: smooth;
+    touch-action: pan-y;
     font-size: 0;
 }
 
