@@ -7,23 +7,23 @@
 {% for category in categories %}
 <section>
     <div class="category-header">
-        <h1>{{ category['name'] }}</h1>
+        <h1>{{ category.name }}</h1>
 
         <div class="carousel-btns">
-            <i id="left" class="fa-solid fa-arrow-left arrow-{{ category['id'] }}"></i>
-            <i id="right" class="fa-solid fa-arrow-right arrow-{{ category['id'] }}"></i>
+            <i id="left" class="fa-solid fa-arrow-left arrow-{{ category.id }}"></i>
+            <i id="right" class="fa-solid fa-arrow-right arrow-{{ category.id }}"></i>
         </div>
     </div>
 
     <div class="wrapper">
-        <div class="carousel" data-category-id="{{ category['id'] }}">
-            {% for food in category['members'] %}
+        <div class="carousel" data-category-id="{{ category.id }}">
+            {% for menu_item in category.menu %}
             <div class="item">
                 <div class="food-card">
-                    <img src="{{ food['image_url'] }}" alt="...">
+                    <img src="{{ menu_item.image_url }}" alt="...">
                     <div class="head">
-                        <span>{{ food['title'] }}</span>
-                        <span>NGN. {{ food['price'] }}</span>
+                        <span>{{ menu_item.title }}</span>
+                        <span>NGN. {{ menu_item.price }}</span>
                     </div>
                     <a href="#" class="btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
