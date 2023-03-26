@@ -3,34 +3,50 @@
 {% block content %}
 {% include 'simple_nav.html' %}
 
-<form action="action_page.php" method="post">
-    <div class="imgcontainer">
-      <img src="app/static/images/food" alt="Avatar" class="avatar">
+<div id="login">
+  <form class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="mb-5"><b>Sign In</b></h3>
+  
+              <div class="form-outline mb-4">
+                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX-2"><b>Email</b></label>
+              </div>
+  
+              <div class="form-outline mb-4">
+                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX-2"><b>Password</b></label>
+              </div>
+  
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-start mb-4">
+                <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                <label class="form-check-label" for="form1Example3"> Remember password </label>
+              </div>
+  
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Sign Up</button>
+
+
+                  <hr>
+                    <small class="text-muted">
+                        Need An Restaurant Owner's Account? <a class="ml-2" href="{{ url_for('restaurant_bp.register') }}">Sign Up Now</a>
+                    </small>
+
+  
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  
-    <div class="container">
-      <label for="uname"><b>Email</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-  
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-  
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
+
   </form>
 
-  <div class="border-top pt-3">
-    <small class="text-muted">
-        Need An Account? <a class="ml-2" href="{{ url_for('restaurant_bp.register') }}">Sign Up Now</a>
-    </small>
 </div>
 
 {% endblock %}
+
