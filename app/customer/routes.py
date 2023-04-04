@@ -1,5 +1,5 @@
 """Main routes for the application"""
-from app.user import bp
+from app.customer import bp
 from flask import render_template
 
 
