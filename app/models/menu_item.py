@@ -2,7 +2,7 @@
 from app.extensions import db
 from app.models.placed_order import PlacedOrder
 from app.utilities import generate_uuid
-from flask import url_for
+# from flask import url_for
 
 
 class MenuItem(db.Model):
