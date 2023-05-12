@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}About{% endblock %}
+{% block title %}Login{% endblock %}
 {% block content %}
 {% include 'simple_nav.html' %}
 
@@ -39,12 +39,7 @@
 
               <div class="border-top pt-3">
                 <small class="text-muted">
-                  Need An Account? <a class="ml-2" href="{{ url_for('customer_bp.register') }}">Sign Up Now</a>
-                </small>
-                <small class="text-muted">
-                  <br>
-                  Do you want to login as a restaurant owner? <a class="ml-2"
-                    href="{{ url_for('restaurant_bp.login') }}">Sign in Here</a>
+                  Need An Account? <a class="ml-2" href="{{ url_for('user_bp.register') }}">Sign Up Now</a>
                 </small>
               </div>
 

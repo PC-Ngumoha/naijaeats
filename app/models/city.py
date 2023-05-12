@@ -1,19 +1,16 @@
-"""Definition of City database model"""
+"""Contains the definition of the 'City' model"""
 from app.extensions import db
-from app.models.customer import Customer
-from app.models.restaurant import Restaurant
+from app.models.user import User
 from app.utilities import generate_uuid
 
+
 class City(db.Model):
-    """City database model"""
-    __tablename__ = 'city'
-    id = db.Column(db.String(80), primary_key=True, default=generate_uuid)
-    name = db.Column(db.String(50), nullable=False)
+    """City model"""
+    id = db.Column(db.String(50), primary_key=True, default=generate_uuid)
+    name = db.Column(db.String(30), nullable=False, unique=True)
     zip_code = db.Column(db.String(20))
-    customers = db.relationship('Customer', backref='city')
-    restaurants = db.relationship('Restaurant', backref='city')
+    users = db.relationship('User', backref='city', lazy=True)
 
-
-    def __repr__(self):
-        """String representation of model instance"""
-        return f'<City {self.id} : {self.name}>'
+    def __repr__(self) -> str:
+        """String representation of this object"""
+        return f'<City {self.id} -> {self.name}>'

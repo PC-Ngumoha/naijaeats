@@ -7,26 +7,6 @@
             <a class="navbar-brand brand-name" href="#">Naija<span>Eats</span></a>
         </div>
 
-        <div class="filter">
-            <select class="form-select form-select-lg " aria-label=".form-select-lg example">
-                <option selected>City?</option>
-                <option value="1">Lagos</option>
-                <option value="2">Enugu</option>
-                <option value="3">Ibadan</option>
-                <option value="3">Ibadan</option>
-                <option value="3">Ibadan</option>
-            </select>
-
-            <select class="form-select form-select-lg " aria-label=".form-select-lg example">
-                <option selected>Category?</option>
-                <option value="1">Lagos</option>
-                <option value="2">Enugu</option>
-                <option value="3">Ibadan</option>
-                <option value="3">Ibadan</option>
-                <option value="3">Ibadan</option>
-            </select>
-        </div>
-
         <div class="cart">
             <a class="btn btn-lg btn-cart" href="#">
                 <i class="fa-solid fa-cart-plus"></i>
@@ -34,8 +14,8 @@
             </a>
 
             <div class="auth-bar auth-bar-flex">
-                <a class="nav-item nav-link" href="{{ url_for('customer_bp.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('customer_bp.register') }}">Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('user_bp.login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('user_bp.register') }}">Register</a>
             </div>
         </div>
     </div>

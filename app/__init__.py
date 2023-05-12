@@ -19,11 +19,9 @@ def create_app(config_class=Config):
 
     # create app blueprints here
     from app.main import bp as main_bp
-    from app.restaurant import bp as restaurant_bp
-    from app.customer import bp as customer_bp
+    from app.user import bp as user_bp
     app.register_blueprint(main_bp)
-    app.register_blueprint(restaurant_bp)
-    app.register_blueprint(customer_bp)
+    app.register_blueprint(user_bp)
 
 
     @app.route('/test/')
