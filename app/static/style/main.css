@@ -31,9 +31,18 @@ a:active
     text-decoration: none;
 }
 
+input::placeholder
+{
+    color: black;
+}
+
 
 .spacer {
     height: 5.6rem
+}
+
+.bottom-space {
+    margin-bottom: 20px;
 }
 
 @media screen  and (max-width: 800px){
@@ -235,4 +244,37 @@ a:active
     font-size: 3.5rem;
 }
 
+
 /* FORM STYLES */
+
+
+/* Sign-in & Sign-up Forms styles */
+.form-control-lg::placeholder{
+    color: black;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+}
+
+.form-check-input {
+    margin: 5px;
+}
+
+.login-area {
+    background-image: radial-gradient(ellipse, rgb(84, 213, 227, .4), rgba(105, 197, 240, .7), rgba(115, 199, 185, .7)),
+     url(../images/naijafoods.jpeg);
+    background-size: 90% auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: 
+}
+
+.login-card {
+    border-radius: 1rem;
+}
+
+
+/* Display classes */
+
+.disappear{
+    display: none !important;
+}

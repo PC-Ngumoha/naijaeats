@@ -4,37 +4,48 @@
 {% include 'simple_nav.html' %}
 
 <div id="login">
-  <form class="vh-100" style="background-color: #508bfc;">
+  <form class="vh-100 login-area">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card shadow-2-strong login-card">
             <div class="card-body p-5 text-center">
 
-              <h3 class="mb-5"><b>Sign In</b></h3>
+              <!-- <h3 class="mb-5"><b>Sign In</b></h3> -->
 
-              <div class="form-outline mb-4">
-                <input type="uname" id="typeEmailX-2" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX-2"><b>Username</b></label>
+              <div class="form-check d-flex justify-content-start mb-4">
+                <input class="form-check-input" type="checkbox" value="" id="business-login" name="is_business" />
+                <label class="form-check-label" for="business-login"> I'm a business </label>
               </div>
 
               <div class="form-outline mb-4">
-                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX-2"><b>Password</b></label>
+                <input type="uname" class="form-control form-control-lg" placeholder="Enter Email" name="email"
+                  autocomplete="off" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" class="form-control form-control-lg" placeholder="Enter Password" name="password"
+                  autocomplete="off" />
               </div>
 
               <!-- Checkbox -->
               <div class="form-check d-flex justify-content-start mb-4">
-                <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                <input class="form-check-input" type="checkbox" name="remember" />
                 <label class="form-check-label" for="form1Example3"> Remember password </label>
               </div>
 
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+              <div class="clearfix bottom-space">
+                <button class="btn btn-outline-primary btn-lg" type="submit">Login</button>
+              </div>
 
-              <hr class="my-4">
 
-              <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit"><i
-                  class="fab fa-google me-2"></i> Sign in with google</button>
+              <!-- <hr class="my-4"> -->
+
+              <p id="or-text-signin">OR</p>
+
+              <button class="btn btn-lg btn-block btn-primary bottom-space" id="google-signin"
+                style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with
+                google</button>
 
 
               <div class="border-top pt-3">

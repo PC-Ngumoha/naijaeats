@@ -3,9 +3,10 @@ from app.extensions import db
 from app.models.menu_item import MenuItem
 from app.models.review import Review
 from app.utilities import generate_uuid
+from flask_login import UserMixin
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """User model"""
     id = db.Column(db.String(50), primary_key=True, default=generate_uuid)
     first_name = db.Column(db.String(70), nullable=True)
