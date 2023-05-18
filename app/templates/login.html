@@ -13,6 +13,14 @@
 
               <!-- <h3 class="mb-5"><b>Sign In</b></h3> -->
 
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+              <div class="p-3 mb-2 bg-danger text-white">
+                {{ messages[0] }}
+              </div>
+              {% endif %}
+              {% endwith %}
+
               <div class="form-check d-flex justify-content-start mb-4">
                 <input class="form-check-input" type="checkbox" value="" id="business-login" name="is_business" />
                 <label class="form-check-label" for="business-login"> I'm a business </label>
