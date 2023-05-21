@@ -38,6 +38,14 @@
         </div>
 
         {% if current_user.is_authenticated %}
+
+        <div class="bottom-space">
+            <a href="{{ url_for('user_bp.profile', user_id=current_user.id) }}">
+                <i class="fa-solid fa-user" id="profile"></i>
+                <label for="profile">Profile</label>
+            </a>
+        </div>
+
         <div class="bottom-space">
             <a href="{{ url_for('user_bp.logout') }}">
                 <i class="fa-solid fa-arrow-right-from-bracket" id="logout"></i>

@@ -1,5 +1,107 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Profile{% endblock %}
 {% block content %}
 {% include 'simple_nav.html' %}
+<div class="profile-area">
+  <div class="profile-header">
+    <div class="profile-image">
+      <img src="{{ url_for('static', filename='images/sample_user.png')}}" alt="Image of a sample user profile">
+    </div>
+    <div class="profile-details">
+      {% if user.is_business %}
+      <span id="user_name">{{ user.org_name }}</span>
+      {% else %}
+      <span id="user_name">{{ user.first_name }} {{ user.last_name }}</span>
+      {% endif %}
+      <span id="user_city">{{ user.city.name }}</span>
+      <span id="user_email">{{ user.email }}</span>
+    </div>
+  </div>
+  <div class="profile-body">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#orderPane"
+            aria-expanded="true" aria-controls="orderPane">
+            <span class="accordion-header">Orders</span>
+          </button>
+        </h2>
+        <div id="orderPane" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {% if orders |length > 0 %}
+            <div class="row">
+              {% for order in orders %}
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Order: {{ order.id }}</h5>
+                    <p class="card-text">
+                      <span>Ordered: {{ order.order_date }}</span><br>
+                      <span>Delivered:
+                        {% if order.delivered %}
+                        {{ order.delivery_date }}
+                        {% else %}
+                        To Be Delivered
+                        {% endif %}
+                      </span>
+                    </p>
+                    <div class="order-control">
+                      <a href="#" class="btn">Fulfill</a>
+                      <a href="#" class="btn">Cancel</a>
+                      <a href="#" class="btn">View Details</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <b> Orders Associated With This User Will Appear Here </b>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% if user.is_business %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#menuPane"
+            aria-expanded="true" aria-controls="menuPane">
+            <span class="accordion-header">Menu</span>
+          </button>
+        </h2>
+        <div id="menuPane" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {% if user.menu |length > 0 %}
+            <div class="row">
+              {% for menu_item in user.menu %}
+              <div class="col-sm-4">
+                <div class="card menu-card">
+                  <img src="{{ menu_item.image_url }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ menu_item.title }}</h5>
+                    <p class="card-text">{{ menu_item.description }}</p>
+                    <a href="#" class="btn btn-delete">Delete</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <b> Menu Created By This Restaurant Will Appear Here </b>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="add-menu-item">
+    <a href="#" class="btn">
+      <i class="fa-solid fa-plus"></i>
+    </a>
+  </div>
+</div>
 {% endblock %}

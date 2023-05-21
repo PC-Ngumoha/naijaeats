@@ -11,6 +11,7 @@ from app.models.user import User
 from app.models.menu_item import MenuItem
 from app.models.review import Review
 from app.models.placed_order import PlacedOrder
+from werkzeug.security import generate_password_hash
 
 app = create_app()
 
@@ -26,11 +27,14 @@ drinks = Category(title='Drinks')
 
 # Restaurants
 scrum = User(org_name='Scrumptuous', email='help@scrumptuous.org',
-              password='123456', city=abuja)
+             is_business=True, password=generate_password_hash('123456'),
+             city=abuja)
 biggs = User(org_name='Mr. Biggs', email='support@mrbiggs.org',
-              password='123456', city=zaria)
+              is_business=True, password=generate_password_hash('123456'),
+              city=zaria)
 light = User(org_name='Light Meals', email='help@lightmealsnigeria.org',
-              password='123456', city=umuahia)
+              is_business=True, password=generate_password_hash('123456'),
+              city=umuahia)
     
 # MenuItems
 item1 = MenuItem(title='Small Chop', price=10.00, category=food,
