@@ -4,6 +4,7 @@ from app.models.menu_item import MenuItem
 from app.models.placed_order import PlacedOrder
 from app.models.review import Review
 from app.utilities import generate_uuid
+from flask import url_for
 from flask_login import UserMixin
 
 
@@ -13,7 +14,8 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(70), nullable=True)
     last_name = db.Column(db.String(70), nullable=True)
     org_name = db.Column(db.String(70), nullable=True)
-    image_url = db.Column(db.Text, nullable=True)
+    image_url = db.Column(db.Text, nullable=False,
+                          default='../static/images/sample_user.png')
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     is_business = db.Column(db.Boolean(), nullable=False, default=False)

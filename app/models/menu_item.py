@@ -1,6 +1,7 @@
 """Contains the definition of the MenuItem model"""
 from app.extensions import db
 from app.utilities import generate_uuid
+from flask import url_for
 
 
 class MenuItem(db.Model):
