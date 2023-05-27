@@ -4,7 +4,7 @@ from app.extensions import db
 from app.models.city import City
 from app.models.menu_item import MenuItem
 from app.models.user import User
-from flask import render_template, redirect, url_for, request, jsonify, flash
+from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 

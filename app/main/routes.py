@@ -15,3 +15,9 @@ def index():
 def about():
     """About page"""
     return render_template('about.html')
+
+@bp.route('/category/<cat_id>')
+def display_category(cat_id):
+    """Displays a specific category of items"""
+    category = Category.query.get(cat_id)
+    return render_template('category.html', category=category)

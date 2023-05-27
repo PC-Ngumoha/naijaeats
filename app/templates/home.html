@@ -2,12 +2,15 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% include 'home_nav.html' %}
-<!-- <p>{{data}}</p> -->
 
 {% for category in categories %}
 <section>
     <div class="category-header">
         <h1>{{ category.title }}</h1>
+
+        <a href="{{ url_for('main_bp.display_category', cat_id=category.id )}}">
+            Explore
+        </a>
 
         <div class="carousel-btns">
             <i id="left" class="fa-solid fa-arrow-left arrow-{{ category.id }}"></i>
@@ -25,7 +28,6 @@
                         <span>{{ menu_item.title }}</span>
                         <span>NGN. {{ menu_item.price }}</span>
                     </div>
-                    <a href="#" class="btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
             {% endfor %}

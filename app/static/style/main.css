@@ -10,6 +10,7 @@ background grey: #f5f7f5
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* outline: 1px solid green; */
 }
 
 html {
@@ -17,6 +18,7 @@ html {
 }
 
 body {
+  position: relative;
   font-size: 1.6rem;
   padding: 10px;
 }
@@ -55,7 +57,7 @@ input::placeholder {
   vertical-align: middle;
   font-size: 2.5rem;
   font-weight: 500;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .brand-name > span {
@@ -138,7 +140,7 @@ input::placeholder {
 }
 
 .auth-bar {
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 1.2rem;
 }
 
@@ -157,12 +159,12 @@ input::placeholder {
 }
 
 .offcanvas {
-  width: 20% !important;
+  width: 40% !important;
 }
 
 @media screen and (max-width: 800px) {
   .offcanvas {
-    width: 30% !important;
+    width: 70% !important;
   }
 }
 
@@ -174,7 +176,7 @@ input::placeholder {
 
 .about-header {
   font-size: 4rem;
-  font-family: "Sono", sans-serif;
+  font-family: 'Sono', sans-serif;
   display: block;
   width: fit-content;
   margin: 0 auto;
@@ -209,13 +211,13 @@ input::placeholder {
 
 .about > section > .head > span {
   font-size: 2.5rem;
-  font-family: "Sono", sans-serif;
+  font-family: 'Sono', sans-serif;
 }
 
 .about > section > .body {
   margin: 5% 0;
   padding: 10px;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   background-color: #f5f7f5;
 }
 
@@ -239,7 +241,7 @@ input::placeholder {
 /* Sign-in & Sign-up Forms styles */
 .form-control-lg::placeholder {
   color: black;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   font-weight: 500;
 }
 
@@ -313,7 +315,7 @@ input::placeholder {
 
 .profile-details span {
   display: block;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   font-weight: 500;
   color: #f0f7f7;
 }
@@ -334,7 +336,7 @@ input::placeholder {
 }
 
 .profile-body .accordion-header {
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 1.5rem;
   font-weight: 500;
 }

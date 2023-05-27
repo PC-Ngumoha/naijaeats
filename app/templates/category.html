@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Category: {{ category.title }}{% endblock %}
+{% block content %}
+{% include 'home_nav.html' %}
+<h1>{{ category.title }}</h1>
+
+<div class="row">
+  {% for menu_item in category.menu %}
+
+  <div class="col-sm-3 mb-5">
+    <div class="card">
+      <img src="{{ menu_item.image_url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">
+          <span>{{ menu_item.title }}</span>
+          <span>NGN. {{ menu_item.price }}</span>
+        </h5>
+        <button type="button" class="btn modal-btn" data-id="{{ menu_item.id }}"
+          data-img-src="{{ menu_item.image_url }}" data-title="{{ menu_item.title }}" data-price="{{ menu_item.price }}"
+          data-restaurant="{{ menu_item.restaurant.org_name }}"
+          data-description="{{ menu_item.description if menu_item.description else 'There is no description for this item' }}">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
