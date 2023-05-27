@@ -1,7 +1,8 @@
 """Main routes for the application"""
 from app.main import bp
 from app.models.category import Category
-from flask import render_template
+from flask import render_template, request
+import json
 
 
 @bp.route('/')
@@ -21,3 +22,13 @@ def display_category(cat_id):
     """Displays a specific category of items"""
     category = Category.query.get(cat_id)
     return render_template('category.html', category=category)
+
+@bp.route('/checkout/')
+def checkout():
+    """Handles What Happens In Checkout"""
+    menu_item_str = request.args.get('items')
+    total_price = request.args.get('totalPrice')
+    # menu_item_dict = json.loads(menu_item_str)
+    return render_template('checkout.html',
+                           menu_item_dict=menu_item_str,
+                           total_price=float(total_price))

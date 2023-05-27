@@ -3,9 +3,11 @@
  * Controls the dynamic display of the
  * items ordered on the sidebar for the cart.
  */
+const cartBody = document.getElementById('cart-body');
 const cartBtn = document.getElementById('btn-cart');
 const checkoutBtn = document.getElementById('btn-checkout');
 const clearBtn = document.getElementById('btn-clear');
+let totalPrice = 0.0;
 
 // Dynamically create a single cart card
 const createCartCard = (data) => {
@@ -26,24 +28,28 @@ const createCartCard = (data) => {
   img.classList.add('img-fluid', 'rounded-start');
   divCol1.appendChild(img);
 
-  const h5 = document.createElement('h5');
-  const title = document.createTextNode(data.title);
-  h5.appendChild(title);
-
   const p1 = document.createElement('p');
-  const quantity = document.createTextNode(`Quantity: ${data.quantity}`);
-  p1.appendChild(quantity);
-
+  p1.classList.add('cart-details');
+  const title = document.createTextNode(data.title);
+  p1.appendChild(title);
   const p2 = document.createElement('p');
+  p2.classList.add('cart-details');
+  const quantity = document.createTextNode(`Quantity: ${data.quantity}`);
+  p2.appendChild(quantity);
+
+  const p3 = document.createElement('p');
+  p3.classList.add('cart-details');
   const priceVal = parseFloat(Number(data.quantity) * Number(data.price));
+  totalPrice += priceVal;
   const price = document.createTextNode(`Price: NGN. ${priceVal.toFixed(2)}`);
-  p2.appendChild(price);
-  divCardBody.append(h5, p1, p2);
+  p3.appendChild(price);
+  divCardBody.append(p1, p2, p3);
 
   const deleteBtn = document.createElement('a');
   const logo = document.createElement('i');
 
   deleteBtn.classList.add('btn', 'btn-trash', 'btn-trash-right');
+  logo.setAttribute('data-item-id', data.id);
   logo.classList.add('fa-solid', 'fa-trash-can');
   deleteBtn.appendChild(logo);
 
@@ -67,17 +73,45 @@ const displayCartCards = (dataList, body) => {
   });
 };
 
+const clear = (body) => {
+  body.innerHTML = '';
+  body.appendChild(checkoutBtn);
+};
+
 // When Clicked: Opens the cart body pane
 cartBtn.addEventListener('click', () => {
-  const cartBody = document.getElementById('cart-body');
   const cartItemStr = localStorage.getItem('cart-item');
   const cartItem = cartItemStr ? JSON.parse(cartItemStr) : [];
 
   if (cartItem.length > 0) {
+    clear(cartBody);
     displayCartCards(cartItem, cartBody);
   } else {
     checkoutBtn.style.display = 'none';
   }
+});
+
+// Tries to determine if any of the cart delete buttons have
+// been clicked
+cartBody.addEventListener('click', (event) => {
+  if (event.target.matches('.fa-trash-can')) {
+    const deleteBtn = event.target;
+    const targetId = deleteBtn.getAttribute('data-item-id');
+    const cartItemStr = localStorage.getItem('cart-item');
+    const cartItem = cartItemStr ? JSON.parse(cartItemStr) : [];
+    // Searches for the cart of interest
+    for (let i = 0; i < cartItem.length; i++) {
+      if (cartItem[i].id === targetId) {
+        // Remove the item at that index
+        cartItem.splice(i, 1);
+        break;
+      }
+    }
+    // Update local storage
+    localStorage.setItem('cart-item', JSON.stringify(cartItem));
+    location.reload(); // Reload page
+  }
+  // console.log(event.target);
 });
 
 // When Clicked: Clears the localStorage of all the cart items
@@ -86,4 +120,17 @@ clearBtn.addEventListener('click', () => {
     localStorage.removeItem('cart-item');
     location.reload();
   }
+});
+
+checkoutBtn.addEventListener('click', (event) => {
+  const cartItemStr = localStorage.getItem('cart-item');
+  const oldaction = checkoutBtn.getAttribute('href');
+  const action = `${oldaction}?items=${cartItemStr}&totalPrice=${totalPrice}`;
+  checkoutBtn.setAttribute('href', action);
+  localStorage.removeItem('cart-item'); // Removes all items
+  event.preventDefault();
+
+  setTimeout(() => {
+    location.href = checkoutBtn.getAttribute('href');
+  }, 1000);
 });

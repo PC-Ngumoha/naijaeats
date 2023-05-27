@@ -10,7 +10,7 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body" id="cart-body">
-    <a class="btn btn-checkout" id="btn-checkout" href="">
+    <a class="btn btn-checkout" id="btn-checkout" href="{{ url_for('main_bp.checkout') }}">
       <label for="checkout">Proceed To Checkout</label>
       <i class="fa-regular fa-credit-card" id="checkout"></i>
     </a>

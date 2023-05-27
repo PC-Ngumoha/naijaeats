@@ -17,6 +17,13 @@
   align-self: center;
 }
 
+.cart-details {
+  font-family: 'Roboto Mono', monospace;
+  /* display: block; */
+  font-size: 12px;
+  margin-left: 5px;
+}
+
 .btn-checkout:hover {
   background-color: #29ba50;
   color: #fff;
