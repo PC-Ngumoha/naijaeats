@@ -1,10 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Checkout{% endblock %}
 {% block content %}
 {% include 'home_nav.html' %}
 
-<h1>Welcome To The Checkout Page 😁</h1>
-<h2>Total Price Of Your Order: NGN. {{ "%.2f"|format(total_price) }}</h2>
-<p>{{ menu_item_dict }}</p>
+<h1>Checkout</h1>
+
+<form action="">
+
+  <div>
+    <input type="checkbox" name="pay-on-delivery" id="pay-on-delivery">
+    <label for="pay-on-delivery">Pay On Delivery</label>
+  </div>
+
+  {% for item in data['menu_items'] %}
+  {{ item }}
+  {% endfor %}
+
+  <div>
+    <button type="submit">Complete Order</button>
+  </div>
+
+</form>
 
 {% endblock %}

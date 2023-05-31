@@ -6,6 +6,7 @@
 const cartBody = document.getElementById('cart-body');
 const cartBtn = document.getElementById('btn-cart');
 const checkoutBtn = document.getElementById('btn-checkout');
+const checkoutForm = document.getElementById('checkout-form');
 const clearBtn = document.getElementById('btn-clear');
 let totalPrice = 0.0;
 
@@ -122,15 +123,39 @@ clearBtn.addEventListener('click', () => {
   }
 });
 
-checkoutBtn.addEventListener('click', (event) => {
+checkoutBtn.addEventListener('click', () => {
+  const customer_id = checkoutBtn.getAttribute('data-customer');
   const cartItemStr = localStorage.getItem('cart-item');
-  const oldaction = checkoutBtn.getAttribute('href');
-  const action = `${oldaction}?items=${cartItemStr}&totalPrice=${totalPrice}`;
-  checkoutBtn.setAttribute('href', action);
-  localStorage.removeItem('cart-item'); // Removes all items
-  event.preventDefault();
+  const cartItem = JSON.parse(cartItemStr);
+  const data = {
+    customerId: customer_id,
+    orderCharge: totalPrice,
+    menu_items: []
+  };
 
+  data.menu_items = cartItem.map((item) => ({
+    id: item.id,
+    quantity: item.quantity
+  }));
+
+  fetch('/checkout/', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  });
+  localStorage.removeItem('cart-item');
+  // Waits a bit, then redirect to the checkout page.
   setTimeout(() => {
-    location.href = checkoutBtn.getAttribute('href');
-  }, 1000);
+    location.href = '/checkout';
+  }, 10);
 });
+
+// checkoutForm.addEventListener('submit', () => {
+//   console.log('Submitted');
+// });
+
+// checkoutBtn.addEventListener('click', () => {
+//   console.log('submitted');
+// });
