@@ -124,11 +124,9 @@ clearBtn.addEventListener('click', () => {
 });
 
 checkoutBtn.addEventListener('click', () => {
-  const customer_id = checkoutBtn.getAttribute('data-customer');
   const cartItemStr = localStorage.getItem('cart-item');
   const cartItem = JSON.parse(cartItemStr);
   const data = {
-    customerId: customer_id,
     orderCharge: totalPrice,
     menu_items: []
   };

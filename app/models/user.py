@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     is_business = db.Column(db.Boolean(), nullable=False, default=False)
-    address = db.Column(db.Text)
+    address = db.Column(db.Text, default='User Address Supposed To Go Here')
     city_id = db.Column(db.String(50), db.ForeignKey('city.id'),
                         nullable=False)
     menu = db.relationship('MenuItem', backref='restaurant', lazy=True)

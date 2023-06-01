@@ -3,6 +3,14 @@
 {% block content %}
 {% include 'home_nav.html' %}
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="p-3 mb-2 bg-success text-white">
+    {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+
 {% for category in categories %}
 <section>
     <div class="category-header">

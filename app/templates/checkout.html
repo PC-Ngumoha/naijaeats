@@ -3,21 +3,31 @@
 {% block content %}
 {% include 'home_nav.html' %}
 
-<h1>Checkout</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="p-3 mb-2 bg-danger text-white">
+  {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
 
-<form action="">
+<span id="checkout-header">
+  <label for="checkout">Checkout</label>
+  <i class="fa-regular fa-credit-card" id="checkout"></i>
+</span>
 
-  <div>
+<form method="POST" action="/complete_order/" id="checkout-form">
+
+  <div class="checkout-element">
     <input type="checkbox" name="pay-on-delivery" id="pay-on-delivery">
     <label for="pay-on-delivery">Pay On Delivery</label>
   </div>
-
-  {% for item in data['menu_items'] %}
-  {{ item }}
-  {% endfor %}
-
-  <div>
-    <button type="submit">Complete Order</button>
+  <input type="hidden" name="total-charge" value="{{ charge }}">
+  <input type="hidden" name="total-quantity" value="{{ quantity }}">
+  <input type="hidden" name="menu-data" value="{{ menu }}">
+  <input type="hidden" name="user-id" value="{{ current_user.id }}">
+  <div class="checkout-element">
+    <button type="submit" class="btn btn-lg btn-checkout">Complete Order</button>
   </div>
 
 </form>

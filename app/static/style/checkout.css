@@ -1,0 +1,33 @@
+#checkout-header {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 3.5rem;
+  color: #667066;
+}
+
+#checkout-form {
+  display: block;
+  max-width: 50%;
+  margin: 5% auto;
+  text-align: center;
+  border: 1.5px solid #29ba50;
+  background-color: #fafcfa;
+  color: #667066;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.2rem;
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.checkout-element {
+  margin: 2rem;
+}
+
+@media screen and (max-width: 500px) {
+  #checkout-form {
+    border-top-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+  }
+}

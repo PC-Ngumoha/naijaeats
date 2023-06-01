@@ -25,14 +25,14 @@ class PlacedOrder(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=0)
     order_date = db.Column(db.DateTime, nullable=False, default=datetime.now())
     delivery_date = db.Column(db.DateTime)
-    delivery_address = db.Column(db.Text, nullable=False)
+    delivery_address = db.Column(db.Text, )
     total_price = db.Column(db.Float)
     cancelled = db.Column(db.Boolean, default=False)
     delivered = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.String(50), db.ForeignKey('user.id'),
                         nullable=True)
     reviews = db.relationship('Review', backref='order', lazy=True)
-    menu = db.relationship('MenuItem', secondary=order_menuitem,
+    menu = db.relationship('MenuItem', secondary='order_menuitem',
                            backref='orders')
 
     def __repr__(self) -> str:
