@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 @bp.route("/register/", methods=['GET', 'POST'])
 def register():
+    """Handles user registration attempts"""
     if request.method == 'POST':
         is_business = request.form.get('is_business')
         first_name = request.form.get('first_name')
@@ -55,9 +56,8 @@ def register():
 
 @bp.route("/login/", methods=['GET', 'POST'])
 def login():
+    """Handles user login attempts"""
     if request.method == 'POST':
-        # Handle the login request here
-        # is_business = request.form.get('is_business')
         email = request.form.get('email')
         password = request.form.get('password')
         remember = request.form.get('remember')

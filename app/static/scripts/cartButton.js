@@ -2,11 +2,11 @@
 /**
  * Contains the Javascript that controls the behaviour of the cart.
  */
+import {getCartItems} from './utils/cart-utils.js';
 const cartCount = document.getElementById('cart-count');
 
 const updateCartButton = () => {
-  const cartItemStr = localStorage.getItem('cart-item');
-  const cartItem = cartItemStr ? JSON.parse(cartItemStr) : [];
+  const cartItem = getCartItems();
   cartCount.textContent = `${cartItem.length}`;
 };
 

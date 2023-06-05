@@ -1,0 +1,23 @@
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="SimpleSideBar" aria-labelledby="AppSideBarLabel">
+  <div class="offcanvas-header">
+    <!-- <h5 class="offcanvas-title brand-name" id="AppSideBarLabel">Naija <span>Eats</span></h5> -->
+    <!-- <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+  </div>
+  <div class="offcanvas-body small">
+    <div class="bottom-space">
+      <a href="{{ url_for('main_bp.index') }}">
+        <i class="fa-solid fa-arrow-left" id="back"></i>
+        <label for="back">Back To Dashboard</label>
+      </a>
+    </div>
+
+    {% if current_user.is_authenticated %}
+    <div class="bottom-space">
+      <a href="{{ url_for('user_bp.logout') }}">
+        <i class="fa-solid fa-arrow-right-from-bracket" id="logout"></i>
+        <label for="logout">Logout</label>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</div>

@@ -32,9 +32,6 @@ def display_category(cat_id):
 @bp.route('/checkout/', methods=['GET', 'POST'])
 def checkout():
     """Handles What Happens In Checkout"""
-    # menu_item_str = request.args.get('items')
-    # total_price = request.args.get('totalPrice')
-    # menu_item_dict = json.loads(menu_item_str)
     if request.method == 'POST':
         request_body = request.json
         session['data'] = request_body
@@ -61,14 +58,6 @@ def complete_order():
     quantity = request.form.get('total-quantity')
 
     if pay_on_delivery:
-        # print({
-        #     'pay-on-delivery': pay_on_delivery,
-        #     'menu-ids': menu,
-        #     'user-id': user_id,
-        #     'charge': charge,
-        #     'quantity': quantity,
-        # })
-
         buyer = User.query.get(user_id)
         new_order = PlacedOrder(quantity=quantity,
                                 delivery_address=buyer.address,
@@ -76,7 +65,7 @@ def complete_order():
                                 buyer=buyer)
         for item_id in menu_ids:
             item = MenuItem.query.get(item_id)
-            new_order.menu.append(item) # Appends item to order
+            new_order.menu.append(item)
         
         # Adds the new order to the database
         db.session.add(new_order)
