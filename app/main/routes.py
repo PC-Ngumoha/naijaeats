@@ -20,7 +20,7 @@ def index(previous=False):
     categories = Category.query.all()
     return render_template('home.html', categories=categories)
 
-@bp.route('/about/')
+@bp.route('/welcome/')
 def about():
     """About page"""
     return render_template('about.html')

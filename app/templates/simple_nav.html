@@ -7,18 +7,16 @@
             </a>
             <a class="navbar-brand brand-name" href="#">Naija<span>Eats</span></a>
         </div>
-
-        <div class="cart">
-            {% if not current_user.is_authenticated%}
-            <div class="auth-bar auth-bar-flex">
-                <a class="nav-item nav-link" href="{{ url_for('user_bp.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('user_bp.register') }}">Register</a>
-            </div>
-            {% endif %}
-        </div>
     </div>
 </nav>
 
 {% include 'simplesidebar.html' %}
 
 <div class="spacer"></div>
+
+<!-- {% if not current_user.is_authenticated%}
+<div class="auth-bar auth-bar-flex">
+    <a class="nav-item nav-link" href="{{ url_for('user_bp.login') }}">Login</a>
+    <a class="nav-item nav-link" href="{{ url_for('user_bp.register') }}">Register</a>
+</div>
+{% endif %} -->
