@@ -5,8 +5,9 @@ from app.models.category import Category
 from app.models.user import User
 from app.models.menu_item import MenuItem
 from app.models.placed_order import PlacedOrder
+from datetime import datetime
 from flask import render_template, request, url_for, session, redirect, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 import json
 
 
@@ -75,3 +76,34 @@ def complete_order():
     else:
         flash('You Must Select A Payment Method') 
         return redirect(url_for('main_bp.checkout'))
+    
+@bp.route('/cancel_order/<order_id>')
+def cancel_order(order_id):
+    """Implements Order cancellation functionality"""
+    order = PlacedOrder.query.get(order_id)
+    order.cancelled = True
+    db.session.add(order)
+    db.session.commit()
+    flash('Order Cancelled Successfully')
+    return redirect(url_for('user_bp.profile', user_id=current_user.id))
+
+@bp.route('/fulfill_order/<order_id>')
+def fulfill_order(order_id):
+    """Implements Order fulfillment functionality"""
+    order = PlacedOrder.query.get(order_id)
+    order.delivered = True
+    order.delivery_date = datetime.now()
+    db.session.add(order)
+    db.session.commit()
+    flash(f'Order {order.id} Has Been Fulfilled')
+    return redirect(url_for('user_bp.profile', user_id=current_user.id))
+
+@bp.route('/delete_menuitem/<item_id>')
+def delete_menuitem(item_id):
+    """Deletes the specified menu item"""
+    # print(item_id)
+    menu_item = MenuItem.query.get(item_id)
+    db.session.delete(menu_item)
+    db.session.commit()
+    flash(f'MenuItem \'{menu_item.title}\' Has Been Successfully Deleted')
+    return redirect(url_for('user_bp.profile', user_id=current_user.id))

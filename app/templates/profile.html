@@ -2,6 +2,15 @@
 {% block title %}Profile{% endblock %}
 {% block content %}
 {% include 'simple_nav.html' %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="p-3 mb-2 bg-success text-white text-center">
+  {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+
 <div class="profile-area">
   <div class="profile-header">
     <div class="profile-image">
@@ -49,13 +58,11 @@
                       </span>
                     </p>
                     <div class="order-control">
-                      {% if not order.delivered or not order.cancelled %}
-                      {% if user.is_business%}
-                      <a href="#" class="btn">Fulfill</a>
+                      {% if user.is_business and not (order.delivered or order.cancelled) %}
+                      <a href="{{ url_for('main_bp.fulfill_order', order_id=order.id )}}" class="btn">Fulfill</a>
                       {% endif %}
-                      {% if not user.is_business %}
-                      <a href="#" class="btn">Cancel</a>
-                      {% endif %}
+                      {% if not user.is_business and not (order.delivered or order.cancelled) %}
+                      <a href="{{ url_for('main_bp.cancel_order', order_id=order.id )}}" class="btn">Cancel</a>
                       {% endif %}
                       <a href="#" class="btn">View Details</a>
                     </div>
@@ -92,7 +99,8 @@
                     <h5 class="card-title">{{ menu_item.title }}</h5>
                     <p class="card-text">{{ menu_item.description }}</p>
                     <a href="#" class="btn btn-delete">Modify</a>
-                    <a href="#" class="btn btn-delete">Delete</a>
+                    <a href="{{ url_for('main_bp.delete_menuitem', item_id=menu_item.id) }}"
+                      class="btn btn-delete">Delete</a>
                   </div>
                 </div>
               </div>

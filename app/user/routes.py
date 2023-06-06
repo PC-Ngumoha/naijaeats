@@ -3,6 +3,7 @@ from app.user import bp
 from app.extensions import db
 from app.models.city import City
 from app.models.menu_item import MenuItem
+from app.models.placed_order import PlacedOrder
 from app.models.user import User
 from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
@@ -87,12 +88,18 @@ def logout():
 def profile(user_id):
     """Displays the user's profile"""
     user = User.query.get(user_id)
+    orders = []
     if user.is_business:
-        orders = []
         menu = MenuItem.query.all()
         for menu_item in menu:
             if menu_item.restaurant == user:
                 orders.extend(menu_item.orders)
+        # Suppose to remove any duplicates
+        order_ids = set([order.id for order in orders])
+        # Get all unique orders
+        orders = []
+        for order_id in order_ids:
+            orders.append(PlacedOrder.query.get(order_id))
     else:
         orders = user.orders
     return render_template('profile.html', user=user, orders=orders)
