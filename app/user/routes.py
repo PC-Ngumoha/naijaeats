@@ -81,7 +81,7 @@ def login():
 def logout():
     """Handle user logout here"""
     logout_user()
-    return redirect(url_for('main_bp.index'))
+    return redirect(url_for('main_bp.index', previous=True))
 
 @bp.route("/profile/<user_id>")
 @login_required

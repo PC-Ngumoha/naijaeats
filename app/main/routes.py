@@ -12,9 +12,11 @@ import json
 
 
 @bp.route('/')
-@bp.route('/home/')
-def index():
+@bp.route('/home/<previous>')
+def index(previous=False):
     """Home page"""
+    if current_user.is_anonymous and not previous:
+        return redirect(url_for('main_bp.about'))
     categories = Category.query.all()
     return render_template('home.html', categories=categories)
 
