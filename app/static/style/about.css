@@ -1,6 +1,43 @@
 /* STYLING FOR THE ABOUT PAGE */
+/* #29ba50 */
+/* #5fe884 */
+/* #EB8C50 */
 
-.links {
+#AboutNavbar {
+  max-width: 30%;
+}
+
+#home {
+  margin-top: 3rem;
+  width: 100vw;
+  height: 100vh;
+  /* overflow-x: none; */
+}
+
+.welcome-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.welcome-message {
+  background-color: #eb8c50;
+  width: 50%;
+  height: 80%;
+  /* display: block;
+  clear: right; */
+}
+
+.display {
+  background-color: red;
+  width: 50%;
+  height: 80%;
+  /* display: inline-block;
+  float: right; */
+}
+
+.link-section {
   min-width: 40%;
   display: flex;
   justify-content: space-around;
