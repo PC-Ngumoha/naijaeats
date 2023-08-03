@@ -117,7 +117,7 @@
   </div>
   {% if user.is_business %}
   <div class="add-menu-item">
-    <a href="#" class="btn">
+    <a href="{{ url_for('main_bp.compose_menuitem') }}" class="btn">
       <i class="fa-solid fa-plus"></i>
     </a>
   </div>

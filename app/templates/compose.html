@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block title %}Compose MenuItem{% endblock %}
+{% block content %}
+{% include 'simple_nav.html' %}
+<b>Create a new dish ☺️</b>
+
+<div id="compose-bar">
+  <form method="POST" action="/compose/" enctype="multipart/form-data">
+    <div class="compose-sections">
+      <input type="text" name="title" id="" placeholder="Enter Name Of Dish">
+    </div>
+
+    <div class="compose-sections">
+      <input type="number" name="price" step=".01" placeholder="Enter Price">
+    </div>
+
+    <div class="compose-sections">
+      <label for="#description-box">Description</label>
+      <textarea name="" id="description-box" cols="" rows=""></textarea>
+    </div>
+
+    <button class="btn btn-checkout" type="submit">Create Menu Item</button>
+  </form>
+</div>
+{% endblock %}

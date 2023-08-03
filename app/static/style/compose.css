@@ -1,0 +1,29 @@
+/*CONTAINS CSS STYLES FOR THE COMPOSE FUNCTIONALITY*/
+
+#compose-bar {
+  border: 1.5px solid #29ba50;
+  max-width: 50%;
+  margin: auto;
+  padding: 2%;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.compose-sections{
+  margin: 2px;
+  width: 80%;
+  margin: 5px auto;
+  padding: 10px 2px;
+}
+
+.compose-sections input {
+  width: 100%;
+  /* border-radius: 2px; */
+}
+
+.compose-sections textarea {
+  display: block;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+}

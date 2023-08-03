@@ -109,3 +109,11 @@ def delete_menuitem(item_id):
     db.session.commit()
     flash(f'MenuItem \'{menu_item.title}\' Has Been Successfully Deleted')
     return redirect(url_for('user_bp.profile', user_id=current_user.id))
+
+@bp.route('/compose/', methods=['GET', 'POST'])
+def compose_menuitem():
+    """Enables creation of new menu-item"""
+    if request.method == 'POST':
+        # Creates the menuitem here
+        pass
+    return render_template('compose.html')
