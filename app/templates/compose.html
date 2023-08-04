@@ -2,7 +2,11 @@
 {% block title %}Compose MenuItem{% endblock %}
 {% block content %}
 {% include 'simple_nav.html' %}
-<b>Create a new dish ☺️</b>
+
+<span id="compose-header">
+  <label for="#compose">Something's Cooking</label>
+  <i class="fa-solid fa-bowl-food" id="compose"></i>
+</span>
 
 <div id="compose-bar">
   <form method="POST" action="/compose/" enctype="multipart/form-data">
@@ -17,6 +21,10 @@
     <div class="compose-sections">
       <label for="#description-box">Description</label>
       <textarea name="" id="description-box" cols="" rows=""></textarea>
+    </div>
+
+    <div class="compose-sections">
+      <input type="file" name="image" id="upload-image">
     </div>
 
     <button class="btn btn-checkout" type="submit">Create Menu Item</button>
