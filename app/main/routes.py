@@ -6,7 +6,8 @@ from app.models.user import User
 from app.models.menu_item import MenuItem
 from app.models.placed_order import PlacedOrder
 from datetime import datetime
-from flask import render_template, request, url_for, session, redirect, flash
+from flask import render_template, request, url_for, session, redirect, flash, abort,\
+    Response
 from flask_login import login_required, current_user
 import json
 
@@ -114,6 +115,103 @@ def delete_menuitem(item_id):
 def compose_menuitem():
     """Enables creation of new menu-item"""
     if request.method == 'POST':
-        # Creates the menuitem here
-        pass
-    return render_template('compose.html')
+        # Gets the other data from the user
+        if not request.form.get('title'):
+            flash('MenuItem must have a title')
+            return redirect(url_for('main_bp.compose_menuitem'))
+        title = request.form.get('title')
+        if not request.form.get('price'):
+            flash('MenuItem must have a set price')
+            return redirect(url_for('main_bp.compose_menuitem'))
+        price = float(request.form.get('price'))
+        if not request.form.get('categories'):
+            flash('MenuItem must belong to one of the specified categories')
+            return redirect(url_for('main_bp.compose_menuitem'))
+        category = Category.query.get(request.form.get('categories'))
+        description = request.form.get('description')
+        restaurant = User.query.get(current_user.id)
+        # Handles file inputs
+        image = request.files['image']
+        if not image or image.filename == '':
+            flash('You have to upload an image')
+            return redirect(url_for('main_bp.compose_menuitem'))
+        # print({title, price, description, image, category, restaurant})
+        
+        # Creates new menu item here
+        item = MenuItem(
+            title=title,
+            price=price,
+            description=description,
+            image=image.read(),
+            mimetype=image.mimetype,
+            category=category,
+            restaurant=restaurant
+        )
+        # Performs the initial saving of the item so we can get
+        # it's id
+        db.session.add(item)
+        db.session.commit()
+        # Set the image_url on that particular item to the image
+        # # we just set up
+        item.image_url = f'/menu_item/{item.id}'
+        db.session.add(item)
+        db.session.commit()
+        flash('New menu item created successfully')
+        return redirect(url_for('user_bp.profile', user_id=current_user.id))
+    categories = Category.query.all()
+    return render_template('compose.html', categories=categories)
+
+@bp.route('/modify/<item_id>', methods=['GET', 'POST'])
+def modify_menuitem(item_id):
+    """Modifies a preexisting menu-item"""
+    if request.method == 'POST':
+        # print(request.form)
+        # print(request.files['image'])
+        if not request.form.get('title'):
+            flash('MenuItem must have a title')
+            return redirect(url_for('main_bp.compose_menuitem'))
+        title = request.form.get('title')
+        if not request.form.get('price'):
+            flash('MenuItem must have a set price')
+            return redirect(url_for('main_bp.compose_menuitem'))
+        price = float(request.form.get('price'))
+        if not request.form.get('categories'):
+            flash('MenuItem must belong to one of the specified categories')
+            return redirect(url_for('main_bp.compose_menuitem'))
+        category = Category.query.get(request.form.get('categories'))
+        description = request.form.get('description')
+        restaurant = User.query.get(current_user.id)
+        # Handles file inputs
+        image = request.files['image']
+        if not image or image.filename == '':
+            flash('You have to upload an image')
+            return redirect(url_for('main_bp.compose_menuitem'))
+
+        item = MenuItem.query.get(item_id)
+        item.title = title
+        item.price = price
+        item.description = description
+        item.category = category
+        item.restaurant = restaurant
+        item.image = image.read()
+        item.mimetype = image.mimetype
+        item.image_url = f'/menu_item/{item.id}'
+
+        db.session.add(item)
+        db.session.commit()
+
+        flash(f'MenuItem {item.title} modified successfully')
+        return redirect(url_for('user_bp.profile', user_id=current_user.id))
+    item = MenuItem.query.get(item_id)
+    categories = Category.query.all()
+    return render_template('compose.html', categories=categories, item=item)
+
+@bp.route('/menu_item/<menu_id>')
+def get_menuitem_image(menu_id):
+    """returns the menu_item image"""
+    item = MenuItem.query.get(menu_id)
+    # If such item does not exist, abort
+    if not item:
+        return abort(404)
+    # Returns image
+    return Response(item.image, mimetype=item.mimetype)

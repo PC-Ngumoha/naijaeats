@@ -10,7 +10,8 @@ class MenuItem(db.Model):
     title = db.Column(db.String(50), nullable=False)
     image_url = db.Column(db.Text, nullable=False,
                           default="../static/images/naijafoods.jpeg")
-    # image = db.Column(db.LargeBinary)   
+    image = db.Column(db.LargeBinary)
+    mimetype = db.Column(db.Text)
     description = db.Column(db.Text)
     price = db.Column(db.Numeric(precision=5, scale=2), nullable=False)
     category_id = db.Column(db.String(50), db.ForeignKey('category.id'),

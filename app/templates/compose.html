@@ -3,12 +3,54 @@
 {% block content %}
 {% include 'simple_nav.html' %}
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="p-3 mb-2 bg-danger text-white text-center">
+  {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+
 <span id="compose-header">
   <label for="#compose">Something's Cooking</label>
   <i class="fa-solid fa-bowl-food" id="compose"></i>
 </span>
 
 <div id="compose-bar">
+  {% if item %}
+  <form method="POST" action="/modify/{{item.id}}" enctype="multipart/form-data">
+    <div class="compose-sections">
+      <input type="text" name="title" id="" value="{{ item.title }}">
+    </div>
+
+    <div class="compose-sections">
+      <input type="number" name="price" step=".01" value="{{ item.price }}">
+    </div>
+
+    <div class="compose-sections">
+      <label for="#description-box">Description (Optional)</label>
+      <textarea name="description" id="description-box" cols="" rows="">
+        {{ item.description }}
+      </textarea>
+    </div>
+
+    <div class="compose-sections">
+      <label for="#categories">Category</label>
+      <select name="categories" id="categories">
+        <option value="{{ item.category.id }}">{{ item.category.title }}</option>
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="compose-sections">
+      <input type="file" name="image" id="upload-image">
+    </div>
+
+    <button class="btn btn-checkout" type="submit">Modify Menu Item</button>
+  </form>
+  {% else %}
   <form method="POST" action="/compose/" enctype="multipart/form-data">
     <div class="compose-sections">
       <input type="text" name="title" id="" placeholder="Enter Name Of Dish">
@@ -19,8 +61,18 @@
     </div>
 
     <div class="compose-sections">
-      <label for="#description-box">Description</label>
-      <textarea name="" id="description-box" cols="" rows=""></textarea>
+      <label for="#description-box">Description (Optional)</label>
+      <textarea name="description" id="description-box" cols="" rows=""></textarea>
+    </div>
+
+    <div class="compose-sections">
+      <label for="#categories">Category</label>
+      <select name="categories" id="categories">
+        <option value="">Please Select</option>
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.title }}</option>
+        {% endfor %}
+      </select>
     </div>
 
     <div class="compose-sections">
@@ -29,5 +81,6 @@
 
     <button class="btn btn-checkout" type="submit">Create Menu Item</button>
   </form>
+  {% endif %}
 </div>
 {% endblock %}

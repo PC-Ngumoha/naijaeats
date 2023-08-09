@@ -98,7 +98,8 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ menu_item.title }}</h5>
                     <p class="card-text">{{ menu_item.description }}</p>
-                    <a href="#" class="btn btn-delete">Modify</a>
+                    <a href="{{ url_for('main_bp.modify_menuitem', item_id=menu_item.id) }}"
+                      class="btn btn-delete">Modify</a>
                     <a href="{{ url_for('main_bp.delete_menuitem', item_id=menu_item.id) }}"
                       class="btn btn-delete">Delete</a>
                   </div>
